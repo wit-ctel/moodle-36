@@ -205,8 +205,8 @@ if ($ADMIN->fulltree) {
 
     // Check for coursecat::make_categories_list, new in 2.5.
     // Old make_categories_list() depricated in 2.5.
-    if (method_exists('coursecat', 'make_categories_list')) {
-        $displaylist = coursecat::make_categories_list();
+    if (method_exists('core_course_category', 'make_categories_list')) {
+        $displaylist = core_course_category::make_categories_list();
     } else {
         $displaylist = array();
         $parentlist = array();
