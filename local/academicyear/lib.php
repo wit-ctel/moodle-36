@@ -27,7 +27,6 @@
  
 defined('MOODLE_INTERNAL') || die();
 
-include_once($CFG->dirroot . "/lib/coursecatlib.php");
 require_once($CFG->libdir.'/clilib.php');
 
 /**
@@ -80,7 +79,7 @@ class academic_year_cli {
             return $existing;
         }
 
-        $category = coursecat::create($category);
+        $category = core_course_category::create($category);
         
         fix_course_sortorder();
 
@@ -152,12 +151,12 @@ class academic_year_cli {
 
         try {
             mtrace("copying {$category->name} to {$newparentcat->name}");
-            $newcategory = coursecat::create($category);
+            $newcategory = core_course_category::create($category);
         } catch (moodle_exception $e) {
             // we can recover from a duplicate category id
             if ($e->errorcode == 'categoryidnumbertaken') {
                 $category->idnumber = $category->name . '.' . $this->startyear;
-                $newcategory = coursecat::create($category);
+                $newcategory = core_course_category::create($category);
             } else {
                 $info = get_exception_info($e);
                 mtrace('Error creating category: ' . var_export($newcategory, true) . ' Exception ' . get_class($e), $info->message, $info->backtrace);
