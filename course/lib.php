@@ -62,6 +62,7 @@ define('COURSE_TIMELINE_INPROGRESS', 'inprogress');
 define('COURSE_TIMELINE_FUTURE', 'future');
 define('COURSE_FAVOURITES', 'favourites');
 define('COURSE_TIMELINE_HIDDEN', 'hidden');
+define('COURSE_INFOAREA', 'infoarea');
 define('COURSE_DB_QUERY_LIMIT', 1000);
 
 function make_log_url($module, $url) {
@@ -4122,6 +4123,10 @@ function course_classify_for_timeline($course, $user = null, $completioninfo = n
     if (!empty($course->startdate) && (course_classify_start_date($course) > $today)) {
         return COURSE_TIMELINE_FUTURE;
     }
+    
+    if (preg_match("/^SUPPORT|INFO|PROG_/", $course->idnumber)) {
+        return COURSE_INFOAREA;
+    }
 
     // Everything else is in progress.
     return COURSE_TIMELINE_INPROGRESS;
@@ -4313,6 +4318,35 @@ function course_filter_courses_by_favourites(
         $numberofcoursesprocessed++;
 
         if (in_array($course->id, $favouritecourseids)) {
+            $filteredcourses[] = $course;
+            $filtermatches++;
+        }
+
+        if ($limit && $filtermatches >= $limit) {
+            // We've found the number of requested courses. No need to continue searching.
+            break;
+        }
+    }
+
+    // Return the number of filtered courses as well as the number of courses that were searched
+    // in order to find the matching courses. This allows the calling code to do some kind of
+    // pagination.
+    return [$filteredcourses, $numberofcoursesprocessed];
+}
+
+function course_filter_courses_by_infoarea(
+    $courses,
+    int $limit = 0
+) : array {
+
+    $filteredcourses = [];
+    $numberofcoursesprocessed = 0;
+    $filtermatches = 0;
+
+    foreach ($courses as $course) {
+        $numberofcoursesprocessed++;
+
+        if (preg_match("/^SUPPORT|INFO|PROG_/", $course->idnumber)) {
             $filteredcourses[] = $course;
             $filtermatches++;
         }

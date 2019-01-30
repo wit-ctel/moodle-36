@@ -37,6 +37,7 @@
             {{#past}}{{#str}} past, block_myoverview {{/str}}{{/past}}
             {{#favourites}}{{#str}} favourites, block_myoverview {{/str}}{{/favourites}}
             {{#hidden}}{{#str}} hiddencourses, block_myoverview {{/str}}{{/hidden}}
+            {{#infoarea}}{{#str}} infoarea, block_myoverview {{/str}}{{/infoarea}}
         </span>
     </button>
     <ul class="dropdown-menu" data-show-active-item data-active-item-text aria-labelledby="groupingdropdown">
@@ -58,6 +59,11 @@
         <li>
             <a class="dropdown-item {{#past}}active{{/past}}" href="#" data-filter="grouping" data-value="past" data-pref="past" aria-label="{{#str}} aria:past, block_myoverview {{/str}}" aria-controls="courses-view-{{uniqid}}">
                 {{#str}} past, block_myoverview {{/str}}
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item {{#infoarea}}active{{/infoarea}}" href="#" data-filter="grouping" data-value="infoarea"  data-pref="infoarea" aria-label="{{#str}} aria:infoarea, block_myoverview {{/str}}" aria-controls="courses-view-{{uniqid}}">
+                {{#str}} infoarea, block_myoverview {{/str}}
             </a>
         </li>
         <li>
