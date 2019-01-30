@@ -3701,6 +3701,8 @@ class core_course_external extends external_api {
                 break;
             case COURSE_TIMELINE_HIDDEN:
                 break;
+            case COURSE_INFOAREA:
+                break;
             default:
                 throw new invalid_parameter_exception('Invalid classification');
         }
@@ -3736,6 +3738,11 @@ class core_course_external extends external_api {
             list($filteredcourses, $processedcount) = course_filter_courses_by_favourites(
                 $courses,
                 $favouritecourseids,
+                $limit
+            );
+        } else if ($classification == COURSE_INFOAREA) {
+            list($filteredcourses, $processedcount) = course_filter_courses_by_infoarea(
+                $courses,
                 $limit
             );
         } else {
