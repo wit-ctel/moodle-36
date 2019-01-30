@@ -40,6 +40,7 @@ $string['aria:lastaccessed'] = 'Sort courses by last accessed date';
 $string['aria:list'] = 'Switch to list view';
 $string['aria:title'] = 'Sort courses by course name';
 $string['aria:past'] = 'Show past courses';
+$string['aria:info'] = 'Show information areas';
 $string['aria:removefromfavourites'] = 'Remove star for';
 $string['aria:summary'] = 'Switch to summary view';
 $string['aria:sortingdropdown'] = 'Sorting dropdown';
@@ -70,6 +71,7 @@ $string['aria:hiddencourses'] = 'Show hidden courses';
 $string['hidden'] = 'Hidden courses';
 $string['hidecourse'] = 'Hide from view';
 $string['hiddencourses'] = 'Hidden';
+$string['info'] = 'Information Areas';
 $string['show'] = 'Show this course';
 $string['privacy:request:preference:set'] = 'The value of the setting \'{$a->name}\' was \'{$a->value}\'';
 
