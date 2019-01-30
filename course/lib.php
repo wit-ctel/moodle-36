@@ -4330,6 +4330,35 @@ function course_filter_courses_by_favourites(
     return [$filteredcourses, $numberofcoursesprocessed];
 }
 
+function course_filter_courses_by_infoarea(
+    $courses,
+    int $limit = 0
+) : array {
+
+    $filteredcourses = [];
+    $numberofcoursesprocessed = 0;
+    $filtermatches = 0;
+
+    foreach ($courses as $course) {
+        $numberofcoursesprocessed++;
+
+        if (preg_match("/^SUPPORT|INFO|PROG_/", $course->idnumber)) {
+            $filteredcourses[] = $course;
+            $filtermatches++;
+        }
+
+        if ($limit && $filtermatches >= $limit) {
+            // We've found the number of requested courses. No need to continue searching.
+            break;
+        }
+    }
+
+    // Return the number of filtered courses as well as the number of courses that were searched
+    // in order to find the matching courses. This allows the calling code to do some kind of
+    // pagination.
+    return [$filteredcourses, $numberofcoursesprocessed];
+}
+
 /**
  * Check module updates since a given time.
  * This function checks for updates in the module config, file areas, completion, grades, comments and ratings.
