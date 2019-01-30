@@ -62,6 +62,7 @@ define('COURSE_TIMELINE_INPROGRESS', 'inprogress');
 define('COURSE_TIMELINE_FUTURE', 'future');
 define('COURSE_FAVOURITES', 'favourites');
 define('COURSE_TIMELINE_HIDDEN', 'hidden');
+define('COURSE_INFOAREA', 'infoarea');
 define('COURSE_DB_QUERY_LIMIT', 1000);
 
 function make_log_url($module, $url) {
